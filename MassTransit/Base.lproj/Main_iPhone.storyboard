@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - LA MTA Map-->
+        <scene sceneID="sh6-4L-8rS">
+            <objects>
+                <viewController id="1bc-N7-BRp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N72-N6-Uff"/>
+                        <viewControllerLayoutGuide type="bottom" id="3Vz-wy-9Kd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wTB-Uf-i0l">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="LA MTA Map" id="SHp-V8-xCd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pqH-fX-Vac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="648" y="1207"/>
+        </scene>
+        <!--View Controller - OCTA Map-->
+        <scene sceneID="Otv-re-miq">
+            <objects>
+                <viewController id="Mrh-yO-GqU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NkW-OB-R5J"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xbl-YW-D9F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g2m-fk-c60">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="OCTA Map" id="ZCw-mm-Ggc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2V3-Zl-O9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="648" y="1918"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vex-rW-GRa">
+            <objects>
+                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
+                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="EP3-Jh-m6d" kind="relationship" relationship="viewControllers" id="DN7-R5-8IN"/>
+                        <segue destination="qL0-YV-mRA" kind="relationship" relationship="viewControllers" id="vG7-31-qcr"/>
+                        <segue destination="1bc-N7-BRp" kind="relationship" relationship="viewControllers" id="QKF-Ty-OwR"/>
+                        <segue destination="Mrh-yO-GqU" kind="relationship" relationship="viewControllers" id="YnP-Id-BPO"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="261"/>
+        </scene>
+        <!--Mass TransitOCTA Table View Controller - OCTA-->
+        <scene sceneID="cRt-Sc-08n">
+            <objects>
+                <tableViewController id="qL0-YV-mRA" customClass="MassTransitOCTATableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="dTc-v6-PUp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="y28-eD-L8j">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y28-eD-L8j" id="G5K-cH-IOL">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="qL0-YV-mRA" id="rTC-z4-UoY"/>
+                            <outlet property="delegate" destination="qL0-YV-mRA" id="fUg-jx-lZm"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="OCTA" id="ZBR-fQ-Ebq"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jR2-yY-543" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="480"/>
+        </scene>
+        <!--Mass TransitMTA Table View Controller - LA MTA-->
+        <scene sceneID="Tg9-5l-hxR">
+            <objects>
+                <tableViewController id="EP3-Jh-m6d" customClass="MassTransitMTATableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X0g-nV-jCh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DWb-Vz-aU2">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DWb-Vz-aU2" id="8Zf-9H-u2V">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EP3-Jh-m6d" id="evt-xi-eC2"/>
+                            <outlet property="delegate" destination="EP3-Jh-m6d" id="wD3-N1-REd"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="LA MTA" id="cFu-P2-FJ5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAM-ea-4jL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="-178"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

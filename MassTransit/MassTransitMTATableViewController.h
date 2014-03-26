@@ -11,4 +11,7 @@
 
 @interface MassTransitMTATableViewController : UITableViewController
 
+@property (nonatomic, strong) MTA *mta;
+@property (nonatomic, strong) NSArray *routes;
+
 @end

@@ -31,6 +31,8 @@
 		1EEAAF9018E0D395003D7C51 /* MTA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF8F18E0D395003D7C51 /* MTA.m */; };
 		1EEAAF9318E0D3A2003D7C51 /* OCTA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9218E0D3A2003D7C51 /* OCTA.m */; };
 		1EEAAF9618E0D3AD003D7C51 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9518E0D3AD003D7C51 /* Database.m */; };
+		1EEAAF9918E13939003D7C51 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9818E13939003D7C51 /* Route.m */; };
+		1EEAAF9C18E1614D003D7C51 /* MassTransitMTAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9B18E1614D003D7C51 /* MassTransitMTAMapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,10 @@
 		1EEAAF9218E0D3A2003D7C51 /* OCTA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTA.m; sourceTree = "<group>"; };
 		1EEAAF9418E0D3AD003D7C51 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		1EEAAF9518E0D3AD003D7C51 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		1EEAAF9718E13939003D7C51 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		1EEAAF9818E13939003D7C51 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		1EEAAF9A18E1614D003D7C51 /* MassTransitMTAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MassTransitMTAMapViewController.h; sourceTree = "<group>"; };
+		1EEAAF9B18E1614D003D7C51 /* MassTransitMTAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MassTransitMTAMapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,12 +147,16 @@
 				1EDA226518DBC7D2006A8738 /* MassTransitAppDelegate.h */,
 				1EDA226618DBC7D2006A8738 /* MassTransitAppDelegate.m */,
 				1EDA226818DBC7D2006A8738 /* Main_iPhone.storyboard */,
+				1EEAAF9A18E1614D003D7C51 /* MassTransitMTAMapViewController.h */,
+				1EEAAF9B18E1614D003D7C51 /* MassTransitMTAMapViewController.m */,
 				1E061B1118E0CB7600A2F8B3 /* MassTransitMTATableViewController.h */,
 				1E061B1218E0CB7600A2F8B3 /* MassTransitMTATableViewController.m */,
 				1E061B1418E0D2AD00A2F8B3 /* MassTransitOCTATableViewController.h */,
 				1E061B1518E0D2AD00A2F8B3 /* MassTransitOCTATableViewController.m */,
 				1EEAAF8E18E0D395003D7C51 /* MTA.h */,
 				1EEAAF8F18E0D395003D7C51 /* MTA.m */,
+				1EEAAF9718E13939003D7C51 /* Route.h */,
+				1EEAAF9818E13939003D7C51 /* Route.m */,
 				1EEAAF9118E0D3A2003D7C51 /* OCTA.h */,
 				1EEAAF9218E0D3A2003D7C51 /* OCTA.m */,
 				1EEAAF9418E0D3AD003D7C51 /* Database.h */,
@@ -294,7 +304,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEAAF9C18E1614D003D7C51 /* MassTransitMTAMapViewController.m in Sources */,
 				1EEAAF9018E0D395003D7C51 /* MTA.m in Sources */,
+				1EEAAF9918E13939003D7C51 /* Route.m in Sources */,
 				1E061B1318E0CB7600A2F8B3 /* MassTransitMTATableViewController.m in Sources */,
 				1EEAAF9618E0D3AD003D7C51 /* Database.m in Sources */,
 				1EDA226718DBC7D2006A8738 /* MassTransitAppDelegate.m in Sources */,

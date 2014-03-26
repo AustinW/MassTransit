@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Database.h"
+#import "Route.h"
 
 @interface MTA : Database
 
 - (id) init;
+- (NSArray *)routes;
 @end

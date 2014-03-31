@@ -12,7 +12,7 @@
 
 static Database *_databaseObj;
 
-@synthesize dbPath;
+@synthesize dbPath, databaseConnection = _databaseConnection;
 
 + (Database *) db
 {
@@ -27,9 +27,12 @@ static Database *_databaseObj;
     self = [super init];
     
     if (self) {
-        if (sqlite3_open([self.dbPath UTF8String], &_databaseConnection) != SQLITE_OK) {
-            NSLog(@"Failed to open database.");
+        _databaseConnection = [FMDatabase databaseWithPath:self.dbPath];
+        
+        if ( ! [_databaseConnection open]) {
+            NSLog(@"Unable to open database: %@", [_databaseConnection lastErrorMessage]);
         }
+        
     }
     
     return self;
@@ -37,7 +40,7 @@ static Database *_databaseObj;
 
 - (void) dealloc
 {
-    sqlite3_close(_databaseConnection);
+    [_databaseConnection close];
 }
 
 @end

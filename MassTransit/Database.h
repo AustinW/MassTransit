@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import <FMDatabase.h>
 
 @interface Database : NSObject
-{
-    sqlite3 *_databaseConnection;
-}
 
 @property (nonatomic, strong) NSString *dbPath;
+@property (nonatomic, strong) FMDatabase *databaseConnection;
 
 + (Database *) db;
 - (id) init;

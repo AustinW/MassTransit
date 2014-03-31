@@ -1,1 +1,3 @@
 *.sl3
+Podfile.lock
+Pods/

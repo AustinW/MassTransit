@@ -7,10 +7,9 @@
 //
 
 #import "MassTransitMTAMapViewController.h"
+#import "PDFScrollView.h"
 
 @interface MassTransitMTAMapViewController ()
-@property (nonatomic, strong) UIDocumentInteractionController *documentInteractionController;
-@property (strong, nonatomic) IBOutlet UIView *pdfView;
 
 @end
 
@@ -30,31 +29,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSURL *pdfUrl = [[NSBundle mainBundle] URLForResource:@"mta_system_map" withExtension:@"pdf"];
+    NSURL *pdfURL = [[NSBundle mainBundle] URLForResource:@"mta_system_map" withExtension:@"pdf"];
     
-    if (pdfUrl) {
-        // Initialize Document Interaction Controller
-        self.documentInteractionController = [UIDocumentInteractionController interactionControllerWithURL:pdfUrl];
-        
-        // Configure Document Interaction Controller
-        [self.documentInteractionController setDelegate:self];
-        
-    }
-}
-
-- (UIViewController *) documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
-{
-    return self;
-}
-
-- (UIView *) documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller
-{
-    return self.pdfView;
-}
-
-- (CGRect) documentInteractionControllerRectForPreview:(UIDocumentInteractionController *)controller
-{
-    return self.pdfView.frame;
+    CGPDFDocumentRef PDFDocument = CGPDFDocumentCreateWithURL((__bridge CFURLRef)pdfURL);
+    
+    CGPDFPageRef PDFPage = CGPDFDocumentGetPage(PDFDocument, 1);
+    [(PDFScrollView *)self.view setPDFPage:PDFPage];
+    
+    CGPDFDocumentRelease(PDFDocument);
 }
 
 

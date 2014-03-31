@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MassTransitMTAMapViewController : UIViewController <UIDocumentInteractionControllerDelegate>
+@interface MassTransitMTAMapViewController : UIViewController
 
 @end

@@ -10,7 +10,7 @@
 #import "Database.h"
 
 @interface MTAStopsTableViewController : UITableViewController
-@property (nonatomic, strong) Database *mtaDB;
+@property (nonatomic, strong) Database *dbInstance;
 @property (nonatomic, strong) NSString *routeId;
-@property (nonatomic, strong) NSArray *trips;
+@property (nonatomic, strong) NSDictionary *trips;
 @end

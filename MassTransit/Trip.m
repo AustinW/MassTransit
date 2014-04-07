@@ -19,6 +19,8 @@
 @synthesize shape_id = _shape_id;
 
 @synthesize tripName = _tripName;
+@synthesize tripStartTime = _tripStartTime;
+@synthesize tripEndTime = _tripEndTime;
 
 - (id)initWithUniqueId:(NSString *)trip_id routeId:(NSString *)route_id serviceId:(NSString *)service_id tripHeadsign:(NSString *)trip_headsign directionId:(NSUInteger)direction_id blockId:(NSUInteger)block_id shapeId:(NSString *)shape_id
 {

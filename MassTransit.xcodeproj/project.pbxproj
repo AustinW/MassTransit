@@ -16,6 +16,7 @@
 		1E33287018F2684A003D5CF8 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286F18F2684A003D5CF8 /* Trip.m */; };
 		1E33287318F26F0D003D5CF8 /* StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33287218F26F0D003D5CF8 /* StopTime.m */; };
 		1E39F3AA18F3287200A3608A /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3A918F3287200A3608A /* Schedule.m */; };
+		1E39F3AD18F3439700A3608A /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */; };
 		1E7C235018E0ADA20064CACD /* MTA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234C18E0ADA20064CACD /* MTA.pdf */; };
 		1E7C235118E0ADA20064CACD /* MTA.sl3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234D18E0ADA20064CACD /* MTA.sl3 */; };
 		1E7C235218E0ADA20064CACD /* OCTA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234E18E0ADA20064CACD /* OCTA.pdf */; };
@@ -74,6 +75,8 @@
 		1E33287218F26F0D003D5CF8 /* StopTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTime.m; sourceTree = "<group>"; };
 		1E39F3A818F3287200A3608A /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		1E39F3A918F3287200A3608A /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
+		1E39F3AB18F3439700A3608A /* RouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetailViewController.h; sourceTree = "<group>"; };
+		1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetailViewController.m; sourceTree = "<group>"; };
 		1E7C234A18E0A9B40064CACD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1E7C234C18E0ADA20064CACD /* MTA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MTA.pdf; sourceTree = "<group>"; };
 		1E7C234D18E0ADA20064CACD /* MTA.sl3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MTA.sl3; sourceTree = "<group>"; };
@@ -146,18 +149,8 @@
 		1E33286318F206EF003D5CF8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1E33286018F205C7003D5CF8 /* MapViewController.h */,
-				1E33286118F205C7003D5CF8 /* MapViewController.m */,
-				1E33286418F207B8003D5CF8 /* MTAMapViewController.h */,
-				1E33286518F207B9003D5CF8 /* MTAMapViewController.m */,
-				1E33286718F207C5003D5CF8 /* OCTAMapViewController.h */,
-				1E33286818F207C5003D5CF8 /* OCTAMapViewController.m */,
-				1E061B1118E0CB7600A2F8B3 /* MTATableViewController.h */,
-				1E061B1218E0CB7600A2F8B3 /* MTATableViewController.m */,
-				1E33286B18F24E1B003D5CF8 /* MTAStopsTableViewController.h */,
-				1E33286C18F24E1B003D5CF8 /* MTAStopsTableViewController.m */,
-				1E061B1418E0D2AD00A2F8B3 /* OCTATableViewController.h */,
-				1E061B1518E0D2AD00A2F8B3 /* OCTATableViewController.m */,
+				1E39F3B018F343FB00A3608A /* PDF */,
+				1E39F3AE18F343EA00A3608A /* Transit */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -175,6 +168,34 @@
 				1E33287218F26F0D003D5CF8 /* StopTime.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		1E39F3AE18F343EA00A3608A /* Transit */ = {
+			isa = PBXGroup;
+			children = (
+				1E39F3AB18F3439700A3608A /* RouteDetailViewController.h */,
+				1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */,
+				1E061B1118E0CB7600A2F8B3 /* MTATableViewController.h */,
+				1E061B1218E0CB7600A2F8B3 /* MTATableViewController.m */,
+				1E33286B18F24E1B003D5CF8 /* MTAStopsTableViewController.h */,
+				1E33286C18F24E1B003D5CF8 /* MTAStopsTableViewController.m */,
+				1E061B1418E0D2AD00A2F8B3 /* OCTATableViewController.h */,
+				1E061B1518E0D2AD00A2F8B3 /* OCTATableViewController.m */,
+			);
+			name = Transit;
+			sourceTree = "<group>";
+		};
+		1E39F3B018F343FB00A3608A /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				1E33286018F205C7003D5CF8 /* MapViewController.h */,
+				1E33286118F205C7003D5CF8 /* MapViewController.m */,
+				1E33286418F207B8003D5CF8 /* MTAMapViewController.h */,
+				1E33286518F207B9003D5CF8 /* MTAMapViewController.m */,
+				1E33286718F207C5003D5CF8 /* OCTAMapViewController.h */,
+				1E33286818F207C5003D5CF8 /* OCTAMapViewController.m */,
+			);
+			name = PDF;
 			sourceTree = "<group>";
 		};
 		1EAE35A118E95FBB009140EC /* Third Party */ = {
@@ -435,6 +456,7 @@
 				1E061B1618E0D2AD00A2F8B3 /* OCTATableViewController.m in Sources */,
 				1EEAAF9318E0D3A2003D7C51 /* OCTA.m in Sources */,
 				1EDA226318DBC7D2006A8738 /* main.m in Sources */,
+				1E39F3AD18F3439700A3608A /* RouteDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

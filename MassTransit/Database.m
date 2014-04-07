@@ -89,9 +89,11 @@ static Database *_databaseObj;
 //    return nil;
 //}
 
-- (NSArray *)tripsForRoute:(NSString *)routeId
+- (NSMutableDictionary *)tripsForRoute:(NSString *)routeId
 {
-    NSMutableArray *trips = [[NSMutableArray alloc] init];
+    NSMutableDictionary *tripDetails = [[NSMutableDictionary alloc] initWithDictionary:@{
+                                                                                         @"sections": [[NSMutableArray alloc] init],
+                                                                                         @"trips": [[NSMutableDictionary alloc] init]}];
     
     FMResultSet *tripResult = [self.databaseConnection executeQueryWithFormat:@"SELECT * FROM trips WHERE route_id = %@", routeId];
     
@@ -110,7 +112,7 @@ static Database *_databaseObj;
             int start = [stopTimeBoundsResult intForColumn:@"start"];
             int end = [stopTimeBoundsResult intForColumn:@"end"];
             
-            FMResultSet *stopBoundsResult = [self.databaseConnection executeQueryWithFormat:@"SELECT stop_times.stop_id, stops.stop_name FROM stop_times JOIN stops ON stop_times.stop_id = stops.stop_id WHERE trip_id = %@ AND (stop_sequence = %d OR stop_sequence = %d)", tripRow.trip_id, start, end];
+            FMResultSet *stopBoundsResult = [self.databaseConnection executeQueryWithFormat:@"SELECT stop_times.stop_id, stops.stop_name, stop_times.arrival_time, stop_times.departure_time FROM stop_times JOIN stops ON stop_times.stop_id = stops.stop_id WHERE trip_id = %@ AND (stop_sequence = %d OR stop_sequence = %d)", tripRow.trip_id, start, end];
             
             NSUInteger resultCount = 0;
             
@@ -118,29 +120,42 @@ static Database *_databaseObj;
                 
                 if (resultCount == 1) {
                     tripRow.tripName = [stopBoundsResult stringForColumn:@"stop_name"];
+                    tripRow.tripStartTime = [stopBoundsResult stringForColumn:@"departure_time"];
                 } else {
                     tripRow.tripName = [tripRow.tripName stringByAppendingString:@" ➡️ "];
                     tripRow.tripName = [tripRow.tripName stringByAppendingString:[stopBoundsResult stringForColumn:@"stop_name"]];
+                    tripRow.tripEndTime = [stopBoundsResult stringForColumn:@"arrival_time"];
                 }
                 
             }
             
+            // Push out to separate function if time avails
             BOOL alreadyExists = NO;
             
-            for (Trip *tripTemp in trips) {
-                if ([tripTemp.tripName isEqualToString:tripRow.tripName]) {
+            for (NSString *tripName in [tripDetails valueForKey:@"sections"]) {
+                if ([tripName isEqualToString:tripRow.tripName]) {
                     alreadyExists = YES;
                     break;
                 }
             }
             
             if ( ! alreadyExists) {
-                [trips addObject:tripRow];
+                [[tripDetails valueForKey:@"sections"] addObject:tripRow.tripName];
             }
+            
+            NSMutableArray *trips = [[tripDetails valueForKey:@"trips"] valueForKey:tripRow.tripName];
+            
+            if (trips == nil) {
+                trips = [[NSMutableArray alloc] init];
+            }
+            
+            [trips addObject:tripRow];
+            
+            [[tripDetails valueForKey:@"trips"] setObject:trips forKey:tripRow.tripName];
         }
     }
     
-    return trips;
+    return tripDetails;
 }
 
 - (void) dealloc

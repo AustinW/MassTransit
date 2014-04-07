@@ -21,9 +21,8 @@ enum DirectionType : NSUInteger { DirectionTypeOutbound, DirectionTypeInbound };
 @property (nonatomic, strong) NSString *shape_id;
 
 @property (nonatomic, strong) NSString *tripName;
-
-#pragma mark - Relationships
-@property (nonatomic, strong) NSMutableArray *stopTimes;
+@property (nonatomic, strong) NSString *tripStartTime;
+@property (nonatomic, strong) NSString *tripEndTime;
 
 - (id) initWithUniqueId:(NSString *)trip_id routeId:(NSString *)route_id serviceId:(NSString *)service_id tripHeadsign:(NSString *)trip_headsign directionId:(NSUInteger)direction_id blockId:(NSUInteger)block_id shapeId:(NSString *)shape_id;
 

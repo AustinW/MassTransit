@@ -15,17 +15,17 @@
 @implementation MTAStopsTableViewController
 
 @synthesize routeId = _routeId;
-@synthesize mtaDB = _mtaDB;
+@synthesize dbInstance = _dbInstance;
 @synthesize trips = _trips;
 
 
-- (Database *)mtaDB
+- (Database *)dbInstance
 {
-    if (_mtaDB == nil) {
-        _mtaDB = [[Database alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"MTA" ofType:@"sl3"]];
+    if (_dbInstance == nil) {
+        _dbInstance = [[Database alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"MTA" ofType:@"sl3"]];
     }
     
-    return _mtaDB;
+    return _dbInstance;
 }
 
 - (void)viewDidLoad
@@ -35,7 +35,7 @@
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
-    self.trips = [self.mtaDB tripsForRoute:self.routeId];
+    self.trips = [self.dbInstance tripsForRoute:self.routeId];
     
     NSLog(@"Trip count: %lu", (unsigned long)[self.trips count]);
 }
@@ -50,16 +50,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return [[self.trips valueForKey:@"sections"] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.trips valueForKey:@"sections"][section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [self.trips count];
+    NSArray *keys = [[self.trips valueForKey:@"trips"] allKeys];
+    
+    NSString *sectionIdentifier = keys[section];
+    
+    return [[[self.trips valueForKey:@"trips"] valueForKey:sectionIdentifier] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,9 +79,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:myIdentifier];
     }
     
-    NSLog(@"Trip index: %ld", (long)indexPath.row);
-    Trip *trip = [self.trips objectAtIndex:indexPath.row];
+    NSLog(@"%@", self.trips);
+    
+//    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
+//    NSArray *array = [dictionary objectForKey:@"data"];
+//    NSString *cellValue = [array objectAtIndex:indexPath.row];
+//    cell.textLabel.text = cellValue;
+
+    
+    Trip *trip = [[self.trips valueForKey:@"trips"] objectAtIndex:indexPath.row];
     NSLog(@"Trip name: %@", [trip tripName]);
+    NSLog(@"Trip duration: %@ to %@", [trip tripStartTime], [trip tripEndTime]);
     cell.textLabel.text = [trip tripName];
 //    cell.detailTextLabel.text = route.description;
     
@@ -119,15 +134,34 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell*)sender
+//{
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
+//    
+//    if ([segue.identifier isEqualToString:@"route-to-stops"]) {
+//        
+//        if ([sender isKindOfClass:[UITableViewCell class]]) {
+//            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+//            
+//            Route *route = [self.routes objectAtIndex:path.row];
+//            
+//            MTAStopsTableViewController *stopsViewController = segue.destinationViewController;
+//            stopsViewController.title = route.name;
+//            
+//            stopsViewController.routeId = route.route_id;
+//            
+//            NSLog(@"Route: %@", stopsViewController.routeId);
+//        }
+//        
+//        
+//    }
+//}
+
+
 
 @end

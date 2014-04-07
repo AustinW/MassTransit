@@ -1,20 +1,21 @@
 //
-//  MassTransitMTATableViewController.m
+//  MTATableViewController.m
 //  MassTransit
 //
 //  Created by Austin White on 3/24/14.
 //  Copyright (c) 2014 Austin White. All rights reserved.
 //
 
-#import "MassTransitMTATableViewController.h"
+#import "MTATableViewController.h"
+#import "MTAStopsTableViewController.h"
 
-@interface MassTransitMTATableViewController ()
+@interface MTATableViewController ()
 
 @end
 
-@implementation MassTransitMTATableViewController
+@implementation MTATableViewController
 
-@synthesize mta, routes;
+@synthesize mtaDB, routes;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,8 +36,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.mta = [[MTA alloc] init];
-    self.routes = [self.mta routes];
+    self.mtaDB = [[Database alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"MTA" ofType:@"sl3"]];
+    self.routes = [self.mtaDB routes];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,7 +64,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *myIdentifier = @"MyIdentifier";
+    static NSString *myIdentifier = @"Route";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:myIdentifier forIndexPath:indexPath];
     
@@ -117,15 +118,35 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell*)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    NSLog(@"Segueing with identifier: %@...", segue.identifier);
+    
+    if ([segue.identifier isEqualToString:@"MTA route-to-stops"]) {
+        
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            
+            Route *route = [self.routes objectAtIndex:path.row];
+            
+            MTAStopsTableViewController *stopsViewController = segue.destinationViewController;
+            stopsViewController.title = route.name;
+            
+            stopsViewController.routeId = route.route_id;
+            
+            NSLog(@"Route: %@", stopsViewController.routeId);
+        }
+        
+        
+    }
 }
-*/
+
 
 @end

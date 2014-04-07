@@ -1,5 +1,5 @@
 //
-//  MassTransitOCTATableViewController.h
+//  OCTATableViewController.h
 //  MassTransit
 //
 //  Created by Austin White on 3/24/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MassTransitOCTATableViewController : UITableViewController
+@interface OCTATableViewController : UITableViewController
 
 @end

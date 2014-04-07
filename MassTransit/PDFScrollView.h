@@ -12,16 +12,16 @@
 
 @interface PDFScrollView : UIScrollView <UIScrollViewDelegate>
 {
-/* Don't declare them if you want them to be weak 
- UIImageView *_backgroundImageView;
-  TiledPDFView *_tiledPDFView;
-  TiledPDFView *_oldTiledPDFView;*/
-
-  CGPDFPageRef _PDFPage;
-  
-  // Current PDF zoom scale.
-  CGFloat _PDFScale;
-
+    /* Don't declare them if you want them to be weak
+     UIImageView *_backgroundImageView;
+     TiledPDFView *_tiledPDFView;
+     TiledPDFView *_oldTiledPDFView;*/
+    
+    CGPDFPageRef _PDFPage;
+    
+    // Current PDF zoom scale.
+    CGFloat _PDFScale;
+    
 }
 
 @property (assign, nonatomic) CGPDFPageRef PDFPage;

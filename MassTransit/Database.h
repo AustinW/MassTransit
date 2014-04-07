@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
 #import <FMDatabase.h>
+
+#import "Route.h"
+#import "Trip.h"
+#import "StopTime.h"
 
 @interface Database : NSObject
 
@@ -16,6 +19,11 @@
 @property (nonatomic, strong) FMDatabase *databaseConnection;
 
 + (Database *) db;
-- (id) init;
+
+- (id)initWithPath:(NSString*)path;
+
+- (NSArray *)routes;
+- (NSArray *)stopsForRouteId:(NSString *)routeId;
+- (NSArray *)tripsForRoute:(NSString *)routeId;
 
 @end

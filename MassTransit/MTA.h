@@ -13,5 +13,4 @@
 @interface MTA : Database
 
 - (id) init;
-- (NSArray *)routes;
 @end

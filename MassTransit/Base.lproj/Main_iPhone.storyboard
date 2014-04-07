@@ -4,37 +4,37 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Mass TransitMTA Map View Controller - LA MTA Map-->
+        <!--Map View Controller - LA MTA Map-->
         <scene sceneID="sh6-4L-8rS">
             <objects>
-                <viewController id="1bc-N7-BRp" customClass="MassTransitMTAMapViewController" sceneMemberID="viewController">
+                <viewController id="1bc-N7-BRp" customClass="MTAMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LIC-Da-oqg"/>
                         <viewControllerLayoutGuide type="bottom" id="Mo5-f3-7PK"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="Sw9-SM-t4g" customClass="PDFScrollView">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" minimumZoomScale="0.25" maximumZoomScale="5" id="Sw9-SM-t4g" customClass="PDFScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </scrollView>
-                    <tabBarItem key="tabBarItem" title="LA MTA Map" id="SHp-V8-xCd"/>
+                    <tabBarItem key="tabBarItem" title="LA MTA Map" image="waypoint-map" id="SHp-V8-xCd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqH-fX-Vac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="648" y="1207"/>
         </scene>
-        <!--View Controller - OCTA Map-->
+        <!--Map View Controller - OCTA Map-->
         <scene sceneID="Otv-re-miq">
             <objects>
-                <viewController id="Mrh-yO-GqU" sceneMemberID="viewController">
+                <viewController id="Mrh-yO-GqU" customClass="OCTAMapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8KB-3g-Bby"/>
                         <viewControllerLayoutGuide type="bottom" id="XZH-Gx-WT9"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="JWk-hH-Ssk" customClass="PDFScrollView">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.25" maximumZoomScale="5" id="JWk-hH-Ssk" customClass="PDFScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </scrollView>
-                    <tabBarItem key="tabBarItem" title="OCTA Map" id="ZCw-mm-Ggc"/>
+                    <tabBarItem key="tabBarItem" title="OCTA Map" image="waypoint-map" id="ZCw-mm-Ggc"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2V3-Zl-O9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,22 +61,25 @@
             </objects>
             <point key="canvasLocation" x="165" y="261"/>
         </scene>
-        <!--Mass TransitOCTA Table View Controller - OC Transit Authority-->
+        <!--Table View Controller - OC Transit Authority-->
         <scene sceneID="Vyy-ZK-ppE">
             <objects>
-                <tableViewController id="7lb-qn-R0o" customClass="MassTransitOCTATableViewController" sceneMemberID="viewController">
+                <tableViewController id="7lb-qn-R0o" customClass="OCTATableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5HB-qv-iC1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VVj-F5-SEZ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VVj-F5-SEZ">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VVj-F5-SEZ" id="rN8-VY-iv3">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="TYG-Ij-X6k" kind="push" id="eZE-qz-hCn"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -90,11 +93,40 @@
             </objects>
             <point key="canvasLocation" x="1248" y="261"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="vH8-S4-rzi">
+            <objects>
+                <tableViewController id="TYG-Ij-X6k" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Yen-ES-BlJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="fSP-h3-39f">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fSP-h3-39f" id="7XP-Lm-0Dz">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TYG-Ij-X6k" id="FNM-cU-r9B"/>
+                            <outlet property="delegate" destination="TYG-Ij-X6k" id="zF1-LS-Zhi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="5lw-5n-Irp"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yxD-pg-d5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1726" y="258"/>
+        </scene>
         <!--Navigation Controller - OCTA-->
         <scene sceneID="Kub-Fl-4Gg">
             <objects>
                 <navigationController definesPresentationContext="YES" id="dHK-Mh-ZCW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="OCTA" id="tcQ-ar-OXa"/>
+                    <tabBarItem key="tabBarItem" title="OCTA" image="bus" id="tcQ-ar-OXa"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="K5O-g0-5Gt">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -106,22 +138,34 @@
             </objects>
             <point key="canvasLocation" x="714" y="261"/>
         </scene>
-        <!--Mass TransitMTA Table View Controller - LA Metro Transit Authority-->
+        <!--Table View Controller - LA Metro Transit Authority-->
         <scene sceneID="923-9g-YnA">
             <objects>
-                <tableViewController id="poc-Zo-AMq" customClass="MassTransitMTATableViewController" sceneMemberID="viewController">
+                <tableViewController id="poc-Zo-AMq" customClass="MTATableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rDD-EB-fj4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyIdentifier" id="hqg-dD-E0C">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Route" textLabel="mdG-Tr-guZ" style="IBUITableViewCellStyleDefault" id="hqg-dD-E0C">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hqg-dD-E0C" id="drC-D2-6e2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="mdG-Tr-guZ">
+                                            <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="7HW-qN-lg1" kind="push" identifier="MTA route-to-stops" id="kgZ-9z-v8Z"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -134,6 +178,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dV0-hv-33V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1703" y="-745"/>
+        </scene>
+        <!--Stops Table View Controller-->
+        <scene sceneID="7tz-E7-9kR">
+            <objects>
+                <tableViewController id="7HW-qN-lg1" customClass="MTAStopsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cDL-tj-GfV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Trip" textLabel="Kja-w5-LVl" style="IBUITableViewCellStyleDefault" id="c2L-5n-EjZ">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c2L-5n-EjZ" id="UOA-6V-T5L">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kja-w5-LVl">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7HW-qN-lg1" id="ZpS-Bk-MOf"/>
+                            <outlet property="delegate" destination="7HW-qN-lg1" id="iuI-Ss-PIt"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="iaH-HW-jU9"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S5n-1Q-riA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2211" y="-745"/>
         </scene>
         <!--View Controller - LA MTA-->
         <scene sceneID="wAX-mi-bak">
@@ -175,7 +257,7 @@
         <scene sceneID="vHm-uO-4V0">
             <objects>
                 <navigationController definesPresentationContext="YES" id="a6l-6C-x4U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="LA MTA" id="b0w-0T-XYP"/>
+                    <tabBarItem key="tabBarItem" title="LA MTA" image="tram" id="b0w-0T-XYP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jxD-OW-nYe">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -188,6 +270,11 @@
             <point key="canvasLocation" x="505" y="-745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bus" width="32" height="32"/>
+        <image name="tram" width="32" height="32"/>
+        <image name="waypoint-map" width="32" height="32"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

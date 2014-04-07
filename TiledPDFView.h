@@ -11,8 +11,8 @@
 
 @interface TiledPDFView : UIView
 {
-  CGPDFPageRef _pdfPage;
-  CGFloat _myScale;
+    CGPDFPageRef _pdfPage;
+    CGFloat _myScale;
 }
 
 @property (assign) CGPDFPageRef pdfPage;

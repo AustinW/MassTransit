@@ -1,5 +1,5 @@
 //
-//  MassTransitMTATableViewController.h
+//  MTATableViewController.h
 //  MassTransit
 //
 //  Created by Austin White on 3/24/14.
@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MTA.h"
 
-@interface MassTransitMTATableViewController : UITableViewController
+@interface MTATableViewController : UITableViewController
 
-@property (nonatomic, strong) MTA *mta;
+@property (nonatomic, strong) Database *mtaDB;
 @property (nonatomic, strong) NSArray *routes;
 
 @end

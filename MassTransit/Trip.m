@@ -38,4 +38,8 @@
     
     return self;
 }
+
+- (NSString *)description {
+    return self.tripName;
+}
 @end

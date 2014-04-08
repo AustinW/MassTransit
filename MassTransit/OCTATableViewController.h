@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Database.h"
+#import "RoutesViewController.h"
 
-@interface OCTATableViewController : UITableViewController
+@interface OCTATableViewController : RoutesViewController
 
 @end

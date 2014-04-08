@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MTA.h"
+#import "Database.h"
+#import "RoutesViewController.h"
 
-@interface MTATableViewController : UITableViewController
-
-@property (nonatomic, strong) Database *mtaDB;
-@property (nonatomic, strong) NSArray *routes;
+@interface MTATableViewController : RoutesViewController
 
 @end

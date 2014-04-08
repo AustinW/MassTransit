@@ -18,12 +18,9 @@
 @property (nonatomic, strong) NSString *dbPath;
 @property (nonatomic, strong) FMDatabase *databaseConnection;
 
-+ (Database *) db;
-
 - (id)initWithPath:(NSString*)path;
 
 - (NSArray *)routes;
-- (NSArray *)stopsForRouteId:(NSString *)routeId;
 - (NSDictionary *)tripsForRoute:(NSString *)routeId;
 
 @end

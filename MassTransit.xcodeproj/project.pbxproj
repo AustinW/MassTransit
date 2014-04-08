@@ -12,11 +12,14 @@
 		1E33286218F205C7003D5CF8 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286118F205C7003D5CF8 /* MapViewController.m */; };
 		1E33286618F207B9003D5CF8 /* MTAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286518F207B9003D5CF8 /* MTAMapViewController.m */; };
 		1E33286918F207C5003D5CF8 /* OCTAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286818F207C5003D5CF8 /* OCTAMapViewController.m */; };
-		1E33286D18F24E1B003D5CF8 /* MTAStopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286C18F24E1B003D5CF8 /* MTAStopsTableViewController.m */; };
+		1E33286D18F24E1B003D5CF8 /* StopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286C18F24E1B003D5CF8 /* StopsTableViewController.m */; };
 		1E33287018F2684A003D5CF8 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33286F18F2684A003D5CF8 /* Trip.m */; };
 		1E33287318F26F0D003D5CF8 /* StopTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E33287218F26F0D003D5CF8 /* StopTime.m */; };
-		1E39F3AA18F3287200A3608A /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3A918F3287200A3608A /* Schedule.m */; };
 		1E39F3AD18F3439700A3608A /* RouteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */; };
+		1E39F3B618F3CB3100A3608A /* StopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3B518F3CB3100A3608A /* StopDetailViewController.m */; };
+		1E39F3B918F3CFF600A3608A /* StopPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3B818F3CFF600A3608A /* StopPoint.m */; };
+		1E39F3BB18F3D28000A3608A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E39F3BA18F3D28000A3608A /* README.txt */; };
+		1E39F3BE18F3D68F00A3608A /* RoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E39F3BD18F3D68F00A3608A /* RoutesViewController.m */; };
 		1E7C235018E0ADA20064CACD /* MTA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234C18E0ADA20064CACD /* MTA.pdf */; };
 		1E7C235118E0ADA20064CACD /* MTA.sl3 in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234D18E0ADA20064CACD /* MTA.sl3 */; };
 		1E7C235218E0ADA20064CACD /* OCTA.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1E7C234E18E0ADA20064CACD /* OCTA.pdf */; };
@@ -39,8 +42,6 @@
 		1EDA227E18DBC7D2006A8738 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDA225A18DBC7D2006A8738 /* UIKit.framework */; };
 		1EDA228618DBC7D2006A8738 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EDA228418DBC7D2006A8738 /* InfoPlist.strings */; };
 		1EDA228818DBC7D2006A8738 /* MassTransitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDA228718DBC7D2006A8738 /* MassTransitTests.m */; };
-		1EEAAF9018E0D395003D7C51 /* MTA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF8F18E0D395003D7C51 /* MTA.m */; };
-		1EEAAF9318E0D3A2003D7C51 /* OCTA.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9218E0D3A2003D7C51 /* OCTA.m */; };
 		1EEAAF9618E0D3AD003D7C51 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9518E0D3AD003D7C51 /* Database.m */; };
 		1EEAAF9918E13939003D7C51 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9818E13939003D7C51 /* Route.m */; };
 		7B641C88FDBE403891776845 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD4EB93C334AEDAA42DB1C /* libPods.a */; };
@@ -67,16 +68,21 @@
 		1E33286518F207B9003D5CF8 /* MTAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAMapViewController.m; sourceTree = "<group>"; };
 		1E33286718F207C5003D5CF8 /* OCTAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTAMapViewController.h; sourceTree = "<group>"; };
 		1E33286818F207C5003D5CF8 /* OCTAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTAMapViewController.m; sourceTree = "<group>"; };
-		1E33286B18F24E1B003D5CF8 /* MTAStopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAStopsTableViewController.h; sourceTree = "<group>"; };
-		1E33286C18F24E1B003D5CF8 /* MTAStopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAStopsTableViewController.m; sourceTree = "<group>"; };
+		1E33286B18F24E1B003D5CF8 /* StopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopsTableViewController.h; sourceTree = "<group>"; };
+		1E33286C18F24E1B003D5CF8 /* StopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopsTableViewController.m; sourceTree = "<group>"; };
 		1E33286E18F2684A003D5CF8 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		1E33286F18F2684A003D5CF8 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		1E33287118F26F0D003D5CF8 /* StopTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopTime.h; sourceTree = "<group>"; };
 		1E33287218F26F0D003D5CF8 /* StopTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopTime.m; sourceTree = "<group>"; };
-		1E39F3A818F3287200A3608A /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
-		1E39F3A918F3287200A3608A /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		1E39F3AB18F3439700A3608A /* RouteDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteDetailViewController.h; sourceTree = "<group>"; };
 		1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteDetailViewController.m; sourceTree = "<group>"; };
+		1E39F3B418F3CB3100A3608A /* StopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopDetailViewController.h; sourceTree = "<group>"; };
+		1E39F3B518F3CB3100A3608A /* StopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopDetailViewController.m; sourceTree = "<group>"; };
+		1E39F3B718F3CFF600A3608A /* StopPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopPoint.h; sourceTree = "<group>"; };
+		1E39F3B818F3CFF600A3608A /* StopPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopPoint.m; sourceTree = "<group>"; };
+		1E39F3BA18F3D28000A3608A /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		1E39F3BC18F3D68F00A3608A /* RoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoutesViewController.h; sourceTree = "<group>"; };
+		1E39F3BD18F3D68F00A3608A /* RoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoutesViewController.m; sourceTree = "<group>"; };
 		1E7C234A18E0A9B40064CACD /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		1E7C234C18E0ADA20064CACD /* MTA.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = MTA.pdf; sourceTree = "<group>"; };
 		1E7C234D18E0ADA20064CACD /* MTA.sl3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = MTA.sl3; sourceTree = "<group>"; };
@@ -107,10 +113,6 @@
 		1EDA228318DBC7D2006A8738 /* MassTransitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MassTransitTests-Info.plist"; sourceTree = "<group>"; };
 		1EDA228518DBC7D2006A8738 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1EDA228718DBC7D2006A8738 /* MassTransitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MassTransitTests.m; sourceTree = "<group>"; };
-		1EEAAF8E18E0D395003D7C51 /* MTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTA.h; sourceTree = "<group>"; };
-		1EEAAF8F18E0D395003D7C51 /* MTA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTA.m; sourceTree = "<group>"; };
-		1EEAAF9118E0D3A2003D7C51 /* OCTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTA.h; sourceTree = "<group>"; };
-		1EEAAF9218E0D3A2003D7C51 /* OCTA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCTA.m; sourceTree = "<group>"; };
 		1EEAAF9418E0D3AD003D7C51 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		1EEAAF9518E0D3AD003D7C51 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		1EEAAF9718E13939003D7C51 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
@@ -158,8 +160,10 @@
 		1E33286A18F23509003D5CF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1E39F3A818F3287200A3608A /* Schedule.h */,
-				1E39F3A918F3287200A3608A /* Schedule.m */,
+				1EEAAF9418E0D3AD003D7C51 /* Database.h */,
+				1EEAAF9518E0D3AD003D7C51 /* Database.m */,
+				1E39F3B718F3CFF600A3608A /* StopPoint.h */,
+				1E39F3B818F3CFF600A3608A /* StopPoint.m */,
 				1E33286E18F2684A003D5CF8 /* Trip.h */,
 				1E33286F18F2684A003D5CF8 /* Trip.m */,
 				1EEAAF9718E13939003D7C51 /* Route.h */,
@@ -173,12 +177,16 @@
 		1E39F3AE18F343EA00A3608A /* Transit */ = {
 			isa = PBXGroup;
 			children = (
+				1E39F3BC18F3D68F00A3608A /* RoutesViewController.h */,
+				1E39F3BD18F3D68F00A3608A /* RoutesViewController.m */,
+				1E39F3B418F3CB3100A3608A /* StopDetailViewController.h */,
+				1E39F3B518F3CB3100A3608A /* StopDetailViewController.m */,
 				1E39F3AB18F3439700A3608A /* RouteDetailViewController.h */,
 				1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */,
 				1E061B1118E0CB7600A2F8B3 /* MTATableViewController.h */,
 				1E061B1218E0CB7600A2F8B3 /* MTATableViewController.m */,
-				1E33286B18F24E1B003D5CF8 /* MTAStopsTableViewController.h */,
-				1E33286C18F24E1B003D5CF8 /* MTAStopsTableViewController.m */,
+				1E33286B18F24E1B003D5CF8 /* StopsTableViewController.h */,
+				1E33286C18F24E1B003D5CF8 /* StopsTableViewController.m */,
 				1E061B1418E0D2AD00A2F8B3 /* OCTATableViewController.h */,
 				1E061B1518E0D2AD00A2F8B3 /* OCTATableViewController.m */,
 			);
@@ -254,12 +262,6 @@
 				1EDA226518DBC7D2006A8738 /* MassTransitAppDelegate.h */,
 				1EDA226618DBC7D2006A8738 /* MassTransitAppDelegate.m */,
 				1EDA226818DBC7D2006A8738 /* Main_iPhone.storyboard */,
-				1EEAAF8E18E0D395003D7C51 /* MTA.h */,
-				1EEAAF8F18E0D395003D7C51 /* MTA.m */,
-				1EEAAF9118E0D3A2003D7C51 /* OCTA.h */,
-				1EEAAF9218E0D3A2003D7C51 /* OCTA.m */,
-				1EEAAF9418E0D3AD003D7C51 /* Database.h */,
-				1EEAAF9518E0D3AD003D7C51 /* Database.m */,
 				1E33286A18F23509003D5CF8 /* Models */,
 				1EDA226B18DBC7D2006A8738 /* Main_iPad.storyboard */,
 				1EDA227418DBC7D2006A8738 /* Images.xcassets */,
@@ -271,6 +273,7 @@
 		1EDA225D18DBC7D2006A8738 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E39F3BA18F3D28000A3608A /* README.txt */,
 				1E7C234C18E0ADA20064CACD /* MTA.pdf */,
 				1E7C234D18E0ADA20064CACD /* MTA.sl3 */,
 				1E7C234E18E0ADA20064CACD /* OCTA.pdf */,
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDA226D18DBC7D2006A8738 /* Main_iPad.storyboard in Resources */,
+				1E39F3BB18F3D28000A3608A /* README.txt in Resources */,
 				1EDA227518DBC7D2006A8738 /* Images.xcassets in Resources */,
 				1E7C235018E0ADA20064CACD /* MTA.pdf in Resources */,
 				1E7C235218E0ADA20064CACD /* OCTA.pdf in Resources */,
@@ -441,10 +445,11 @@
 			files = (
 				1EAE35A418E95FD5009140EC /* TiledPDFView.m in Sources */,
 				1EAE35A018E95F68009140EC /* PDFScrollView.m in Sources */,
-				1E33286D18F24E1B003D5CF8 /* MTAStopsTableViewController.m in Sources */,
-				1EEAAF9018E0D395003D7C51 /* MTA.m in Sources */,
+				1E39F3B918F3CFF600A3608A /* StopPoint.m in Sources */,
+				1E33286D18F24E1B003D5CF8 /* StopsTableViewController.m in Sources */,
 				1E33286618F207B9003D5CF8 /* MTAMapViewController.m in Sources */,
-				1E39F3AA18F3287200A3608A /* Schedule.m in Sources */,
+				1E39F3B618F3CB3100A3608A /* StopDetailViewController.m in Sources */,
+				1E39F3BE18F3D68F00A3608A /* RoutesViewController.m in Sources */,
 				1E33287018F2684A003D5CF8 /* Trip.m in Sources */,
 				1E33286918F207C5003D5CF8 /* OCTAMapViewController.m in Sources */,
 				1EEAAF9918E13939003D7C51 /* Route.m in Sources */,
@@ -454,7 +459,6 @@
 				1E33286218F205C7003D5CF8 /* MapViewController.m in Sources */,
 				1EDA226718DBC7D2006A8738 /* MassTransitAppDelegate.m in Sources */,
 				1E061B1618E0D2AD00A2F8B3 /* OCTATableViewController.m in Sources */,
-				1EEAAF9318E0D3A2003D7C51 /* OCTA.m in Sources */,
 				1EDA226318DBC7D2006A8738 /* main.m in Sources */,
 				1E39F3AD18F3439700A3608A /* RouteDetailViewController.m in Sources */,
 			);

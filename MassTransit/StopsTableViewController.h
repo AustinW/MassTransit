@@ -1,5 +1,5 @@
 //
-//  MTAStopsTableViewController.h
+//  StopsTableViewController.h
 //  MassTransit
 //
 //  Created by Austin White on 4/6/14.
@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Database.h"
+#import "StopDetailViewController.h"
 
-@interface MTAStopsTableViewController : UITableViewController
-@property (nonatomic, strong) Database *dbInstance;
+@interface StopsTableViewController : UITableViewController
+@property (nonatomic, strong) Database *database;
 @property (nonatomic, strong) NSString *routeId;
 @property (nonatomic, strong) NSDictionary *trips;
 @end

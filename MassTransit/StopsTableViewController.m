@@ -1,32 +1,22 @@
 //
-//  MTAStopsTableViewController.m
+//  StopsTableViewController.m
 //  MassTransit
 //
 //  Created by Austin White on 4/6/14.
 //  Copyright (c) 2014 Austin White. All rights reserved.
 //
 
-#import "MTAStopsTableViewController.h"
+#import "StopsTableViewController.h"
 
-@interface MTAStopsTableViewController ()
+@interface StopsTableViewController ()
 
 @end
 
-@implementation MTAStopsTableViewController
+@implementation StopsTableViewController
 
 @synthesize routeId = _routeId;
-@synthesize dbInstance = _dbInstance;
+@synthesize database = _database;
 @synthesize trips = _trips;
-
-
-- (Database *)dbInstance
-{
-    if (_dbInstance == nil) {
-        _dbInstance = [[Database alloc] initWithPath:[[NSBundle mainBundle] pathForResource:@"MTA" ofType:@"sl3"]];
-    }
-    
-    return _dbInstance;
-}
 
 - (void)viewDidLoad
 {
@@ -35,7 +25,7 @@
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
-    self.trips = [self.dbInstance tripsForRoute:self.routeId];
+    self.trips = [self.database tripsForRoute:self.routeId];
     
     NSLog(@"Trip count: %lu", (unsigned long)[self.trips count]);
 }
@@ -51,22 +41,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [[self.trips valueForKey:@"sections"] count];
+    return [[self.trips objectForKey:@"sections"] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.trips valueForKey:@"sections"][section];
+    return [[self.trips objectForKey:@"sections"][section] tripName];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    NSArray *keys = [[self.trips valueForKey:@"trips"] allKeys];
+    NSString *sectionIdentifier = [NSString stringWithFormat:@"%ld", (unsigned long)section];
     
-    NSString *sectionIdentifier = keys[section];
-    
-    return [[[self.trips valueForKey:@"trips"] valueForKey:sectionIdentifier] count];
+    return [[[self.trips objectForKey:@"trips"] objectForKey:sectionIdentifier] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,19 +67,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:myIdentifier];
     }
     
-    NSLog(@"%@", self.trips);
+    NSString *key = [NSString stringWithFormat:@"%lu", indexPath.section];
     
-//    NSDictionary *dictionary = [dataArray objectAtIndex:indexPath.section];
-//    NSArray *array = [dictionary objectForKey:@"data"];
-//    NSString *cellValue = [array objectAtIndex:indexPath.row];
-//    cell.textLabel.text = cellValue;
-
+    NSDictionary *stop = [[self.trips objectForKey:@"trips"] objectForKey:key][indexPath.row];
     
-    Trip *trip = [[self.trips valueForKey:@"trips"] objectAtIndex:indexPath.row];
-    NSLog(@"Trip name: %@", [trip tripName]);
-    NSLog(@"Trip duration: %@ to %@", [trip tripStartTime], [trip tripEndTime]);
-    cell.textLabel.text = [trip tripName];
-//    cell.detailTextLabel.text = route.description;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [stop objectForKey:@"stop_name"]];
     
     return cell;
 }
@@ -138,29 +118,29 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell*)sender
-//{
-//    // Get the new view controller using [segue destinationViewController].
-//    // Pass the selected object to the new view controller.
-//    
-//    if ([segue.identifier isEqualToString:@"route-to-stops"]) {
-//        
-//        if ([sender isKindOfClass:[UITableViewCell class]]) {
-//            NSIndexPath *path = [self.tableView indexPathForCell:sender];
-//            
-//            Route *route = [self.routes objectAtIndex:path.row];
-//            
-//            MTAStopsTableViewController *stopsViewController = segue.destinationViewController;
-//            stopsViewController.title = route.name;
-//            
-//            stopsViewController.routeId = route.route_id;
-//            
-//            NSLog(@"Route: %@", stopsViewController.routeId);
-//        }
-//        
-//        
-//    }
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell*)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"stop-details"]) {
+        
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            NSIndexPath *path = [self.tableView indexPathForCell:sender];
+            
+            NSString *key = [NSString stringWithFormat:@"%lu", path.section];
+            
+            NSDictionary *stop = [[[self.trips objectForKey:@"trips"] objectForKey:key] objectAtIndex:path.row];
+            
+            StopDetailViewController *stopDetailViewController = segue.destinationViewController;
+            stopDetailViewController.title = [stop objectForKey:@"stop_name"];
+            
+            stopDetailViewController.stop = stop;
+            NSLog(@"Stop: %@", stop);
+            
+        }
+    }
+}
 
 
 

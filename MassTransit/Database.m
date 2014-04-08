@@ -44,17 +44,9 @@ static Database *_databaseObj;
     NSMutableArray *routes = [[NSMutableArray alloc] init];
     
     FMResultSet *result = [self.databaseConnection executeQuery:@"SELECT * FROM routes"];
+
     while ([result next]) {
-        Route *routeRow = [[Route alloc] initWithUniqueId:[result stringForColumn:@"route_id"]
-                                                shortName:[result stringForColumn:@"route_short_name"]
-                                                 longName:[result stringForColumn:@"route_long_name"]
-                                              description:[result stringForColumn:@"route_desc"]
-                                                     type:[result stringForColumn:@"route_type"]
-                                                    color:[result stringForColumn:@"route_color"]
-                                                textColor:[result stringForColumn:@"route_text_color"]
-                                                      url:[result stringForColumn:@"route_url"]];
-        
-        [routes addObject:routeRow];
+        [routes addObject:[result resultDictionary]];
     }
     
     return routes;
@@ -153,6 +145,20 @@ static Database *_databaseObj;
     NSLog(@"Trip Details: %@", tripDetails);
     
     return tripDetails;
+}
+
++ (NSString *)routeNameFromDictionary:(NSDictionary *)route
+{
+    NSString *short_name = [route objectForKey:@"route_short_name"],
+    *long_name = [route objectForKey:@"route_long_name"];
+    
+    if ([short_name isEqualToString:@""]) {
+        return long_name;
+    } else if ([long_name isEqualToString:@""]) {
+        return short_name;
+    } else {
+        return [NSString stringWithFormat:@"%@ - %@", long_name, short_name];
+    }
 }
 
 - (void) dealloc

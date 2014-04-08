@@ -52,10 +52,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:myIdentifier];
     }
     
-    NSLog(@"Route index: %ld", (long)indexPath.row);
-    Route *route = [self.routes objectAtIndex:indexPath.row];
-    cell.textLabel.text = [route name];
-    cell.detailTextLabel.text = route.description;
+    NSDictionary *route = [self.routes objectAtIndex:indexPath.row];
+    cell.textLabel.text = [Database routeNameFromDictionary:route];
     
     return cell;
 }
@@ -76,13 +74,13 @@
         if ([sender isKindOfClass:[UITableViewCell class]]) {
             NSIndexPath *path = [self.tableView indexPathForCell:sender];
             
-            Route *route = [self.routes objectAtIndex:path.row];
+            NSDictionary *route = [self.routes objectAtIndex:path.row];
             
             StopsTableViewController *stopsViewController = segue.destinationViewController;
             stopsViewController.database = self.database;
-            stopsViewController.title = route.name;
+            stopsViewController.title = [Database routeNameFromDictionary:route];
             
-            stopsViewController.routeId = route.route_id;
+            stopsViewController.routeId = [route objectForKey:@"route_id"];
             
             NSLog(@"Route: %@", stopsViewController.routeId);
         }

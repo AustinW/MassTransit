@@ -23,4 +23,6 @@
 - (NSArray *)routes;
 - (NSDictionary *)tripsForRoute:(NSString *)routeId;
 
++ (NSString *)routeNameFromDictionary:(NSDictionary *)route;
+
 @end

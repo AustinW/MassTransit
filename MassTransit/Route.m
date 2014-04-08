@@ -48,10 +48,4 @@
     }
 }
 
-//- (NSString *)description
-//{
-//    return [NSString stringWithFormat:@"ID: %@, short name: %@, long name: %@, description: %@, type: %@, color: %@, text color: %@, url: %@",
-//            self.route_id, self.short_name, self.long_name, self.description, self.type, self.color, self.text_color, self.url];
-//}
-
 @end

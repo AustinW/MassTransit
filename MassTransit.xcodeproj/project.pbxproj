@@ -43,7 +43,6 @@
 		1EDA228618DBC7D2006A8738 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EDA228418DBC7D2006A8738 /* InfoPlist.strings */; };
 		1EDA228818DBC7D2006A8738 /* MassTransitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EDA228718DBC7D2006A8738 /* MassTransitTests.m */; };
 		1EEAAF9618E0D3AD003D7C51 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9518E0D3AD003D7C51 /* Database.m */; };
-		1EEAAF9918E13939003D7C51 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEAAF9818E13939003D7C51 /* Route.m */; };
 		7B641C88FDBE403891776845 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ADD4EB93C334AEDAA42DB1C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -115,8 +114,6 @@
 		1EDA228718DBC7D2006A8738 /* MassTransitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MassTransitTests.m; sourceTree = "<group>"; };
 		1EEAAF9418E0D3AD003D7C51 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		1EEAAF9518E0D3AD003D7C51 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		1EEAAF9718E13939003D7C51 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
-		1EEAAF9818E13939003D7C51 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
 		2ADD4EB93C334AEDAA42DB1C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3269B54374C7496986E7B8AD /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,8 +163,6 @@
 				1E39F3B818F3CFF600A3608A /* StopPoint.m */,
 				1E33286E18F2684A003D5CF8 /* Trip.h */,
 				1E33286F18F2684A003D5CF8 /* Trip.m */,
-				1EEAAF9718E13939003D7C51 /* Route.h */,
-				1EEAAF9818E13939003D7C51 /* Route.m */,
 				1E33287118F26F0D003D5CF8 /* StopTime.h */,
 				1E33287218F26F0D003D5CF8 /* StopTime.m */,
 			);
@@ -183,10 +178,10 @@
 				1E39F3B518F3CB3100A3608A /* StopDetailViewController.m */,
 				1E39F3AB18F3439700A3608A /* RouteDetailViewController.h */,
 				1E39F3AC18F3439700A3608A /* RouteDetailViewController.m */,
-				1E061B1118E0CB7600A2F8B3 /* MTATableViewController.h */,
-				1E061B1218E0CB7600A2F8B3 /* MTATableViewController.m */,
 				1E33286B18F24E1B003D5CF8 /* StopsTableViewController.h */,
 				1E33286C18F24E1B003D5CF8 /* StopsTableViewController.m */,
+				1E061B1118E0CB7600A2F8B3 /* MTATableViewController.h */,
+				1E061B1218E0CB7600A2F8B3 /* MTATableViewController.m */,
 				1E061B1418E0D2AD00A2F8B3 /* OCTATableViewController.h */,
 				1E061B1518E0D2AD00A2F8B3 /* OCTATableViewController.m */,
 			);
@@ -452,7 +447,6 @@
 				1E39F3BE18F3D68F00A3608A /* RoutesViewController.m in Sources */,
 				1E33287018F2684A003D5CF8 /* Trip.m in Sources */,
 				1E33286918F207C5003D5CF8 /* OCTAMapViewController.m in Sources */,
-				1EEAAF9918E13939003D7C51 /* Route.m in Sources */,
 				1E061B1318E0CB7600A2F8B3 /* MTATableViewController.m in Sources */,
 				1EEAAF9618E0D3AD003D7C51 /* Database.m in Sources */,
 				1E33287318F26F0D003D5CF8 /* StopTime.m in Sources */,

@@ -14,6 +14,8 @@ static Database *_databaseObj;
 
 @synthesize dbPath, databaseConnection = _databaseConnection;
 
+#pragma mark - Initializers
+
 - (id)initWithPath:(NSString*)path
 {
     self.dbPath = path;
@@ -58,58 +60,101 @@ static Database *_databaseObj;
                                                                                          @"sections": [[NSMutableArray alloc] init],
                                                                                          @"trips": [[NSMutableDictionary alloc] init]}];
     
-    FMResultSet *tripResult = [self.databaseConnection executeQueryWithFormat:@"SELECT * FROM trips WHERE route_id = %@", routeId];
+    FMResultSet *tripResult = [self sqlTripsFromRouteId:routeId];
     
     while ([tripResult next]) {
-        Trip *tripRow = [[Trip alloc] initWithUniqueId:[tripResult stringForColumn:@"trip_id"]
-                                               routeId:[tripResult stringForColumn:@"route_id"]
-                                             serviceId:[tripResult stringForColumn:@"service_id"]
-                                          tripHeadsign:[tripResult stringForColumn:@"trip_headsign"]
-                                           directionId:[tripResult intForColumn:@"direction_id"]
-                                               blockId:[tripResult intForColumn:@"block_id"]
-                                               shapeId:[tripResult stringForColumn:@"shape_id"]];
         
-        FMResultSet *stopTimeBoundsResult = [self.databaseConnection executeQueryWithFormat:@"SELECT MIN(stop_sequence) AS start, MAX(stop_sequence) AS end FROM stop_times WHERE trip_id = %@", tripRow.trip_id];
+        [self compileTrips:tripResult andTripDetails:tripDetails];
         
-        if ([stopTimeBoundsResult next]) {
-            int start = [stopTimeBoundsResult intForColumn:@"start"];
-            int end = [stopTimeBoundsResult intForColumn:@"end"];
-            
-            FMResultSet *stopBoundsResult = [self.databaseConnection executeQueryWithFormat:@"SELECT stop_times.stop_id, stops.stop_name, stop_times.arrival_time, stop_times.departure_time FROM stop_times JOIN stops ON stop_times.stop_id = stops.stop_id WHERE trip_id = %@ AND (stop_sequence = %d OR stop_sequence = %d) ORDER BY arrival_time", tripRow.trip_id, start, end];
-            
-            NSUInteger resultCount = 0;
-            
-            while ([stopBoundsResult next] && ++resultCount <= 2) {
-                
-                if (resultCount == 1) {
-                    tripRow.tripName = [stopBoundsResult stringForColumn:@"stop_name"];
-                    tripRow.tripStartTime = [stopBoundsResult stringForColumn:@"departure_time"];
-                } else {
-                    tripRow.tripName = [tripRow.tripName stringByAppendingString:@" -> "];
-                    tripRow.tripName = [tripRow.tripName stringByAppendingString:[stopBoundsResult stringForColumn:@"stop_name"]];
-                    tripRow.tripEndTime = [stopBoundsResult stringForColumn:@"arrival_time"];
-                }
-                
-            }
-            
-            // Push out to separate function if time avails
-            BOOL alreadyExists = NO;
-            
-            for (Trip *trip in [tripDetails objectForKey:@"sections"]) {
-                if ([trip.tripName isEqualToString:tripRow.tripName]) {
-                    alreadyExists = YES;
-                    break;
-                }
-            }
-            
-            if ( ! alreadyExists) {
-                [[tripDetails objectForKey:@"sections"] addObject:tripRow];
-            }
-            
-            
-        }
     }
     
+    [self addStopsToTrip:tripDetails];
+    
+    return tripDetails;
+}
+
+# pragma mark - SQL Helpers
+
+- (FMResultSet *)sqlTripsFromRouteId:(NSString *)routeId
+{
+    return [self.databaseConnection executeQueryWithFormat:@"SELECT * FROM trips WHERE route_id = %@", routeId];
+}
+
+- (FMResultSet *)sqlStopTimeBoundsFromTrip:(NSDictionary *)trip
+{
+    return [self.databaseConnection executeQueryWithFormat:@"\
+            SELECT MIN(stop_sequence) AS start, MAX(stop_sequence) AS end\
+            FROM stop_times\
+            WHERE trip_id = %@", [trip objectForKey:@"trip_id"]];
+}
+
+- (FMResultSet *)sqlStopBoundsFromTrip:(NSDictionary *)trip andStart:(int)start andEnd:(int)end
+{
+    return [self.databaseConnection executeQueryWithFormat:@"\
+            SELECT stop_times.stop_id, stops.stop_name, stop_times.arrival_time, stop_times.departure_time\
+            FROM stop_times\
+            JOIN stops ON stop_times.stop_id = stops.stop_id\
+            WHERE trip_id = %@ AND (stop_sequence = %d OR stop_sequence = %d)\
+            ORDER BY arrival_time", [trip objectForKey:@"trip_id"], start, end];
+}
+
+- (FMResultSet *)sqlStopsFromTrip:(Trip *)trip
+{
+    return [self.databaseConnection executeQueryWithFormat:@"\
+            SELECT stops.stop_name, stops.stop_lat, stops.stop_lon, stop_times.arrival_time, stop_times.departure_time\
+            FROM trips \
+            JOIN stop_times ON trips.trip_id = stop_times.trip_id\
+            JOIN stops ON stop_times.stop_id = stops.stop_id\
+            WHERE trips.trip_id = %@", [trip attribute:@"trip_id"]];
+}
+
+#pragma mark - Object compilers
+
+- (void)compileTrips:(FMResultSet *)tripResult andTripDetails:(NSMutableDictionary *)tripDetails
+{
+    Trip *tripRow = [[Trip alloc] initWithDictionary:[tripResult resultDictionary]];
+    
+    FMResultSet *stopTimeBoundsResult = [self sqlStopTimeBoundsFromTrip:tripRow.attributes];
+    
+    if ([stopTimeBoundsResult next]) {
+        int start = [stopTimeBoundsResult intForColumn:@"start"];
+        int end = [stopTimeBoundsResult intForColumn:@"end"];
+        
+        FMResultSet *stopBoundsResult = [self sqlStopBoundsFromTrip:tripRow.attributes andStart:start andEnd:end];
+        
+        NSUInteger resultCount = 0;
+        
+        while ([stopBoundsResult next] && ++resultCount <= 2) {
+            
+            if (resultCount == 1) {
+                tripRow.tripName = [stopBoundsResult stringForColumn:@"stop_name"];
+                tripRow.tripStartTime = [stopBoundsResult stringForColumn:@"departure_time"];
+            } else {
+                tripRow.tripName = [tripRow.tripName stringByAppendingString:@" -> "];
+                tripRow.tripName = [tripRow.tripName stringByAppendingString:[stopBoundsResult stringForColumn:@"stop_name"]];
+                tripRow.tripEndTime = [stopBoundsResult stringForColumn:@"arrival_time"];
+            }
+            
+        }
+        
+        // Push out to separate function if time avails
+        BOOL alreadyExists = NO;
+        
+        for (Trip *trip in [tripDetails objectForKey:@"sections"]) {
+            if ([trip.tripName isEqualToString:tripRow.tripName]) {
+                alreadyExists = YES;
+                break;
+            }
+        }
+        
+        if ( ! alreadyExists) {
+            [[tripDetails objectForKey:@"sections"] addObject:tripRow];
+        }
+    }
+}
+
+- (void)addStopsToTrip:(NSMutableDictionary *)tripDetails
+{
     NSUInteger index = 0;
     
     for (Trip *trip in [tripDetails objectForKey:@"sections"]) {
@@ -118,34 +163,19 @@ static Database *_databaseObj;
         
         [[tripDetails objectForKey:@"trips"] setObject:[[NSMutableArray alloc] init] forKey:indexStr];
         
-        FMResultSet *tripStops = [self.databaseConnection executeQueryWithFormat:@"\
-                                  SELECT stops.stop_name, stops.stop_lat, stops.stop_lon, stop_times.arrival_time, stop_times.departure_time\
-                                  FROM trips \
-                                  JOIN stop_times ON trips.trip_id = stop_times.trip_id\
-                                  JOIN stops ON stop_times.stop_id = stops.stop_id\
-                                  WHERE trips.trip_id = %@", trip.trip_id];
+        FMResultSet *tripStops = [self sqlStopsFromTrip:trip];
         
         while ([tripStops next]) {
-            NSDictionary *stop = @{
-                                   @"stop_name": [tripStops stringForColumn:@"stop_name"],
-                                   @"stop_lat": [tripStops stringForColumn:@"stop_lat"],
-                                   @"stop_lon": [tripStops stringForColumn:@"stop_lon"],
-                                   @"arrival_time": [tripStops stringForColumn:@"arrival_time"],
-                                   @"departure_time": [tripStops stringForColumn:@"departure_time"]};
-            
-            
-            NSLog(@"Index: %ld", (unsigned long)index);
-            
+            NSDictionary *stop = [tripStops resultDictionary];
+
             [[[tripDetails objectForKey:@"trips"] objectForKey:indexStr] addObject:stop];
         }
         
         ++index;
     }
-    
-    NSLog(@"Trip Details: %@", tripDetails);
-    
-    return tripDetails;
 }
+
+# pragma mark - Class methods (helpers)
 
 + (NSString *)routeNameFromDictionary:(NSDictionary *)route
 {
@@ -160,6 +190,8 @@ static Database *_databaseObj;
         return [NSString stringWithFormat:@"%@ - %@", long_name, short_name];
     }
 }
+
+# pragma mark - Deallocator
 
 - (void) dealloc
 {

@@ -1,6 +1,11 @@
 # Mass Transit
 
+By: Austin White
+Date: 4/7/2014
+Contact: austingym@gmail.com
+
 ## Notes
+Previous versions did not include databases
 
 ### Database Indeces
 ```
